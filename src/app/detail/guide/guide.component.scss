@@ -1,0 +1,47 @@
+/* Add mobile styles for the component here.  */
+
+.guide {
+
+    background-color: #f0f0f0;
+    padding: 16;
+    border-radius: 5;
+    margin: 0 0 16;
+
+    .title {
+        font-size: 12;
+        font-weight: bold;
+        padding-bottom: 4;
+    }
+
+    .text {
+        margin: 32 0 8;
+        font-size: 16;
+        color: #222;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    .companies {
+
+        Button {
+            height: auto;
+            margin: 16 8;
+            padding: 8 24;
+            font-size: 12;
+            font-weight: bold;
+            border-radius: 30;
+        }
+    }
+
+    .content {
+
+        .card {
+            border-radius: 3;
+            font-size: 16;
+            color: #000;
+            background-color: #f8f8f8;
+            margin-right: 16;
+            padding: 8;
+        }
+    }
+}

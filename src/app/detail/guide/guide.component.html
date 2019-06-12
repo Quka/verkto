@@ -1,0 +1,23 @@
+<StackLayout class="guide">
+
+    <Label class="title" backgroundColor="#f0f0f0" row="0" [text]="guide.title"></Label>
+
+    <ScrollView height="75" orientation="horizontal">
+        <StackLayout class="companies" orientation="horizontal">
+            <Button class="btn btn-primary" *ngFor="let company of guide.companyGuides" [text]="company.name"
+                (tap)="onCompanyTap(company)"></Button>
+        </StackLayout>
+    </ScrollView>
+
+    <ScrollView height="200" orientation="horizontal">
+        <StackLayout class="content" orientation="horizontal">
+            <StackLayout class="card" *ngFor="let line of selectedCompanyGuide.contentLines">
+                <Label [text]="line.image"></Label> 
+                <Label [width]="cardWidthCalculate(line.content)" [text]="line.content" textWrap="true"></Label> 
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+    <!-- <Textview class="text" [text]="selectedCompanyGuide.text" [editable]="false" textWrap="true"></Textview> -->
+
+</StackLayout>
