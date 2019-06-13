@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.verkto",
+    "id": "dk.arlindukshini.verkto",
     "tns-android": {
       "version": "5.4.0"
     },
@@ -25,6 +25,8 @@
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
     "nativescript-angular": "~8.0.0",
+    "nativescript-iqkeyboardmanager": "^1.5.1",
+    "nativescript-plugin-firebase": "^8.3.2",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-listview": "^6.3.2",
     "nativescript-ui-sidedrawer": "~6.0.0",

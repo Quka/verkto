@@ -47,29 +47,25 @@ export class DataService {
         guideTypeId: 1,
         name: "Gips / Knauf",
         contentLines: [
-          { image: "blabla", content: "Placering af stolper" },
-          {
-            image: "blabla", content: "Gorgeous spiral galaxy M33 seems to have more than its fair share of glowing hydrogen gas." +
-              "A prominent member of the local group of galaxies, M33 is also known as the Triangulum Galaxy and" +
-              "lies about 3 million light-years distant.The galaxy's inner 30,000 light-years or so are shown in this" +
-              "telescopic portrait that enhances its reddish ionized hydrogen clouds or HII regions." +
-              "Sprawling along loose spiral arms that wind toward the core, M33's giant HII regions are some" +
-              "of the largest known stellar nurseries,sites of the formation of short-lived but very massive stars." +
-              "Intense ultraviolet radiation from the luminous, massive stars ionizes" +
-              "the surrounding hydrogen gas and ultimately produces the characteristic red glow. To enhance this image," +
-              "broadband data was used to produce a color view of the galaxy and combined with narrowband data recorded" +
-              "through a hydrogen-alpha filter.That filter transmits the light of the strongest hydrogen emission line."
-          },
-          { image: "blabla", content: "" },
+          { image: "cc450.png", content: "Stolpesamlinger. Som hovedregel skal stolper være i fuld længde. Eventuelle samlinger af stolper skal være forskudt fra stolpe til stolpe." },
+          { image: "cc600.png", content: "Installationshuller. Der må udføres ekstra huller i profilkroppen, når hullet ikke overstiger 40% af kroppens bredde og en højde på max. 200 mm. " },
+          { image: "", content: "Hullerne skal udføres min. 300 mm fra profilenderne og med en indbyrdes afstand på > 250 mm." },
+          { image: "plademontage.png", content: "Plademontage. Pladerne kan monteres på langs eller på tværs af stolperne. Pladerne tilpasses, så de måler 10 - 15 mm mindre end den færdige væghøjde" },
+          { image: "", content: "Tværmontage. Ved tværmontage monteres pladerne på tværs af stolpernes længderetning. Alle kortkanter skal samles over stolper. Ved beklædninger med 2 lag gipsplader forskydes samlingerne i de enkelte lag, som vist på tegningen." },
+          { image: "lm_under_25m.png", content: "Længdemontage (indtil 2,5 m). Ved længdemontage monteres pladerne i stolpernes retning. Pladerne bør monteres uden kortkantsamlinger, når væghøjden er mindre end 2,5 meter." },
+          { image: "lm_over_25m.png", content: "Længdemontage (over 2,5 m). Langkanter samles over stolpe. I yderste pladelag skal kortkanter være understøttet af T-samlestykke eller båndstål. Ved vægge med flere pladelag skal kortkantsamlingerne forskydes mindst 150 mm." },
+          { image: "skruer_trae.png", content: "" },
+          { image: "skrueafstande_lm.png", content: "Skrueafstande - Længdemontage. Inderste pladelag fastskrues pr. ca. 450 mm i alle stolperne. Yderste pladelag fastskrues langs kanter pr. 200 mm i stolper og pr. 200 - 225 mm i top- og bundskinne. Inde på pladen skrues pr. 300 mm i alle stolper. " },
+          { image: "skrueafstande_tm.png", content: "Skrueafstande - Tværmontage. Inderste pladelag fastskrues i alle stolper med en afstand, der svarer til den halve pladebredde. Yderste pladelag fastskrues pr. 200 mm i stolper og pr. 200 - 225 mm i top- og bundskinne. Inde på pladen skrues pr. 300 mm i alle stolper." },
         ],
         source: "https://www.google.com"
       },
-      { id: 2, guideTypeId: 2, name: "Rockwool", contentLines: [{ image: "basdflf asdf", content: "rockrro brocrro" }], source: "https://www.google.com" },
-      { id: 3, guideTypeId: 3, name: "Dafa", contentLines: [{ image: "basdflf asdf", content: "daferro raferro" }], source: "https://www.google.com" },
-      { id: 4, guideTypeId: 4, name: "Nordland", contentLines: [{ image: "basdflf asdf", content: "norderro orderro" }], source: "https://www.google.com" },
-      { id: 5, guideTypeId: 5, name: "Klemmelister", contentLines: [{ image: "basdflf asdf", content: "selvrro elverro" }], source: "https://www.google.com" },
-      { id: 5, guideTypeId: 5, name: "Træbeklædning", contentLines: [{ image: "basdflf asdf", content: "adsf kjaslkdfj alskdjf" }], source: "https://www.google.com" },
-      { id: 5, guideTypeId: 5, name: "Eternit", contentLines: [{ image: "basdflf asdf", content: "zxcvlkzxjcklvzlxckvj zlkjxcv lzækjvc" }], source: "https://www.google.com" },
+      { id: 2, guideTypeId: 2, name: "Rockwool", contentLines: [{ image: "", content: "rockrro brocrro" }], source: "https://www.google.com" },
+      { id: 3, guideTypeId: 3, name: "Dafa", contentLines: [{ image: "", content: "daferro raferro" }], source: "https://www.google.com" },
+      { id: 4, guideTypeId: 4, name: "Nordland", contentLines: [{ image: "", content: "norderro orderro" }], source: "https://www.google.com" },
+      { id: 5, guideTypeId: 5, name: "Klemmelister", contentLines: [{ image: "", content: "selvrro elverro" }], source: "https://www.google.com" },
+      { id: 5, guideTypeId: 5, name: "Træbeklædning", contentLines: [{ image: "", content: "adsf kjaslkdfj alskdjf" }], source: "https://www.google.com" },
+      { id: 5, guideTypeId: 5, name: "Eternit", contentLines: [{ image: "", content: "zxcvlkzxjcklvzlxckvj zlkjxcv lzækjvc" }], source: "https://www.google.com" },
     ]
 
     return companyGuides;

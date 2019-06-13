@@ -9,12 +9,12 @@
         </StackLayout>
     </ScrollView>
 
-    <ScrollView height="200" orientation="horizontal">
+    <ScrollView height="auto" orientation="horizontal">
         <StackLayout class="content" orientation="horizontal">
             <StackLayout class="card" *ngFor="let line of selectedCompanyGuide.contentLines">
-                <Label [text]="line.image"></Label> 
-                <Label [width]="cardWidthCalculate(line.content)" [text]="line.content" textWrap="true"></Label> 
-            </StackLayout>
+                <Image *ngIf="line.image" [src]="'~/images/' + line.image"></Image>
+                <Label [text]="line.content" textWrap="true"></Label> 
+            </StackLayout> 
         </StackLayout>
     </ScrollView>
 

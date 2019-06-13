@@ -5,6 +5,9 @@ import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nat
 import { filter } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
 
+// Import Google Firebase
+const firebase = require('nativescript-plugin-firebase');
+
 @Component({
     moduleId: module.id,
     selector: "ns-app",
@@ -19,12 +22,24 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        // Init Firebase as the first thing once the app runs
+        firebase
+            .init({
+
+            })
+            .then(
+                () => console.log('Firebase initialised!'),
+                error => {
+                    console.log(`firebase.init error: ${error}`);
+                }
+            )
+
         this._activatedUrl = "/home";
         this._sideDrawerTransition = new SlideInOnTopTransition();
 
         this.router.events
-        .pipe(filter((event: any) => event instanceof NavigationEnd))
-        .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
+            .pipe(filter((event: any) => event instanceof NavigationEnd))
+            .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {

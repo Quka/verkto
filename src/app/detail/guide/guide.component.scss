@@ -41,7 +41,16 @@
             color: #000;
             background-color: #f8f8f8;
             margin-right: 16;
-            padding: 8;
+            width: 280;
+
+            Image {
+                border-top-left-radius: 3;
+                border-top-right-radius: 3;
+            }
+
+            Label {
+                padding: 8 16;
+            }
         }
     }
 }

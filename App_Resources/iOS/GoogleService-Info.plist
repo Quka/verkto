@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>533394600152-c512k6rvnuc0483sjnj349s0vu8l44gu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.533394600152-c512k6rvnuc0483sjnj349s0vu8l44gu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCDymbASL6yQ4Mx35z4SNKVZWtGLweSK78</string>
+	<key>GCM_SENDER_ID</key>
+	<string>533394600152</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>dk.arlindukshini.verkto</string>
+	<key>PROJECT_ID</key>
+	<string>verkto</string>
+	<key>STORAGE_BUCKET</key>
+	<string>verkto.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:533394600152:ios:404f5802be51ed98</string>
+	<key>DATABASE_URL</key>
+	<string>https://verkto.firebaseio.com</string>
+</dict>
+</plist>

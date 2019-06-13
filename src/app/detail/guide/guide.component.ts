@@ -23,9 +23,4 @@ export class GuideComponent implements OnInit {
     this.selectedCompanyGuide = company;
   }
 
-  cardWidthCalculate(content: string): number {
-    console.log(content);
-    return 70;
-  }
-
 }
