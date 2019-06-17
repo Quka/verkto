@@ -9,6 +9,9 @@ platforms/
 !webpack.config.js
 *.css
 
+# specific css file
+!verkto-theme.css
+
 # Logs
 logs
 *.log

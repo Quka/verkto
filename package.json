@@ -5,7 +5,7 @@
       "version": "5.4.0"
     },
     "tns-ios": {
-      "version": "5.4.0"
+      "version": "5.4.2"
     }
   },
   "description": "NativeScript Application",
@@ -33,7 +33,7 @@
     "reflect-metadata": "~0.1.12",
     "rxjs": "~6.5.0",
     "tns-core-modules": "~5.4.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~8.0.0",
@@ -41,9 +41,9 @@
     "codelyzer": "~4.5.0",
     "nativescript-dev-sass": "~1.7.0",
     "nativescript-dev-typescript": "~0.10.0",
-    "nativescript-dev-webpack": "^0.24.1",
+    "nativescript-dev-webpack": "~0.24.0",
     "tslint": "~5.11.0"
   },
-  "gitHead": "67e1a5d2fe6907c5e775d020e6439df795154f58",
+  "gitHead": "8c1a4866a66daab09bf5ef8e5a96472687192373",
   "readme": "NativeScript Application"
 }
