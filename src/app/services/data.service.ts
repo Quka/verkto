@@ -3,6 +3,8 @@ import { Instruction } from '../model/instruction.model';
 import { GuideType } from '../model/guide-type.model';
 import { CompanyGuide } from '../model/company-guide.model';
 
+import * as firebase from "nativescript-plugin-firebase";
+
 @Injectable({
   providedIn: 'root'
 })

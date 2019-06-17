@@ -12,27 +12,35 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
 
         <StackLayout row="1" class="sidedrawer-header">
             <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
-            <Label class="sidedrawer-header-brand" text="User Name"></Label>
-            <Label class="footnote" text="username@mail.com"></Label>
+            <Label class="sidedrawer-header-brand" [text]="currentUser.email"></Label>
+            <!-- <Label class="footnote" [text]="currentUser.email"></Label> -->
         </StackLayout>
-    
+
         <ScrollView row="2" class="sidedrawer-content">
             <StackLayout>
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/home')" (tap)="onNavItemTap('/home')">
+                <GridLayout columns="auto, *" class="sidedrawer-list-item"
+                    [class.selected]="isComponentSelected('/home')" (tap)="onNavItemTap('/home')">
                     <Label col="0" text="&#xf015;" class="fa"></Label>
                     <Label col="1" text="Montagevejledning" class="p-r-10"></Label>
                 </GridLayout>
 
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/featured')" (tap)="onNavItemTap('/featured')">
+                <GridLayout columns="auto, *" class="sidedrawer-list-item"
+                    [class.selected]="isComponentSelected('/featured')" (tap)="onNavItemTap('/featured')">
                     <Label col="0" text="&#xf005;" class="fa"></Label>
                     <Label col="1" text="Beregner" class="p-r-10"></Label>
                 </GridLayout>
-    
-                <StackLayout class="hr-light"></StackLayout>
 
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/settings')" (tap)="onNavItemTap('/settings')">
+                <GridLayout columns="auto, *" class="sidedrawer-list-item"
+                    [class.selected]="isComponentSelected('/settings')" (tap)="onNavItemTap('/settings')">
                     <Label col="0" text="&#xf013;" class="fa"></Label>
                     <Label col="1" text="Indstillinger" class="p-r-10"></Label>
+                </GridLayout>
+
+                <StackLayout class="hr-light"></StackLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="logout()">
+                    <Label col="0" text="&#xf14d;" class="fa"></Label>
+                    <Label col="1" text="Log ud" class="p-r-10"></Label>
                 </GridLayout>
             </StackLayout>
         </ScrollView>

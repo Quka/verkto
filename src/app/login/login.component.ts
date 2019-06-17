@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.page.actionBarHidden = true;
     this.user = new User();
     this.user.email = "arlind13@hotmail.com";
-    this.user.password = "123456";
+    this.user.password = "1234567";
   }
 
   ngOnInit() {
@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.userService.login(this.user)
       .then(result => {
-        console.log(result)
         this.processing = false;
         this.routerExtensions.navigate(["/home"], { clearHistory: true });
       })
@@ -71,7 +70,6 @@ export class LoginComponent implements OnInit {
 
   register() {
     if (this.user.password != this.user.confirmPassword) {
-      console.log(this.user);
       this.alert("Your passwords do not match.");
       this.processing = false;
       return;
@@ -103,11 +101,11 @@ export class LoginComponent implements OnInit {
       .then((data) => {
         if (data.result) {
           this.userService.resetPassword(data.text.trim())
-          // .then(() => {
-          //   this.alert("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
-          // }).catch(() => {
-          //   this.alert("Unfortunately, an error occurred resetting your password.");
-          // });
+            .then(() => {
+              this.alert("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
+            }).catch(() => {
+              this.alert("Unfortunately, an error occurred resetting your password.");
+            });
         }
       });
   }
