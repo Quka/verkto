@@ -8,6 +8,7 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { Instruction } from '../model/instruction.model';
 import { DataService } from '../services/data.service';
 import { CompanyGuide } from '../model/company-guide.model';
+import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class DetailComponent implements OnInit {
 
   instructionId: number;
   instruction: Instruction;
-  instructions: Array<Instruction>;
+  instructions: ObservableArray<Instruction>;
 
   constructor(
     private pageRoute: PageRoute,
@@ -29,7 +30,7 @@ export class DetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.instructions = this.dataService.getInstructionItems();
+    this.instructions = this.dataService.instructionItems;
 
     // Get the passed params and set the instructionId as the passed Id
     // and set the instruction object to the coressponding one in the service
@@ -37,7 +38,7 @@ export class DetailComponent implements OnInit {
       switchMap(activatedRoute => activatedRoute.params)
     ).forEach((params) => {
       this.instructionId = + params["id"];
-      this.instruction = this.instructions.filter(i => i.id == this.instructionId)[0];
+      this.instruction = this.instructions.filter(x => x.id == this.instructionId)[0];
     });
   }
 

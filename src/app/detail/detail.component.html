@@ -15,8 +15,10 @@
     <Label class="action-bar-title" [text]="instruction.name"></Label>
 </ActionBar>
 
+
+
 <ScrollView orientation="vertical">
     <StackLayout orientation="vertical">
-        <ns-guide [guide]="guide" *ngFor="let guide of instruction.guideTypes"></ns-guide>
+        <ns-guide [guide]="guide" *ngFor="let guide of instruction.guideTypes._array"></ns-guide>
     </StackLayout>
 </ScrollView>

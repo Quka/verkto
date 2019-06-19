@@ -1,75 +1,68 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
+import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
+import { Observable } from 'rxjs';
+
 import { Instruction } from '../model/instruction.model';
 import { GuideType } from '../model/guide-type.model';
 import { CompanyGuide } from '../model/company-guide.model';
 
-import * as firebase from "nativescript-plugin-firebase";
+import { firestore } from 'nativescript-plugin-firebase';
+import * as firebase from "nativescript-plugin-firebase/app";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor() { }
+  private _instructionItems: ObservableArray<Instruction>;
 
-  getInstructionItems(): Array<Instruction> {
-    let instructions: Array<Instruction> = [
-      { id: 1, name: "Tagkonstruktion", cover: "roof.jpg", guideTypes: null, companyGuides: null, },
-      { id: 2, name: "Vægge i trækonstruktion", cover: "wall.jpg", guideTypes: null, companyGuides: null },
-      { id: 3, name: "Gulv", cover: "floor.jpg", guideTypes: null, companyGuides: null },
-    ]
+  /**
+   * 
+   * @param zone The most common use of this service is to optimize performance when starting a work consisting of one or more asynchronous tasks that don't require UI updates or error handling to be handled by Angular. Such tasks can be kicked off via runOutsideAngular and if needed, these tasks can reenter the Angular zone via run.
+   */
+  constructor(private zone: NgZone) { }
 
-    instructions.forEach(instr => {
-      instr.guideTypes = this.getGuideTypes().filter(g => g.instructionId == instr.id);
-    });
-
-    return instructions;
+  get instructionItems(): ObservableArray<Instruction> {
+    return this._instructionItems;
   }
 
-  getGuideTypes(): Array<GuideType> {
-    let guides: Array<GuideType> = [
-      { id: 1, instructionId: 2, title: "Vægbeklædning", companyGuides: null },
-      { id: 2, instructionId: 2, title: "Isolering", companyGuides: null },
-      { id: 3, instructionId: 2, title: "Dampspærre", companyGuides: null },
-      { id: 4, instructionId: 2, title: "Vindspærre", companyGuides: null },
-      { id: 5, instructionId: 2, title: "Facadebeklædning", companyGuides: null },
-    ]
+  retrieveInstructionItems(): ObservableArray<Instruction> {
+    this._instructionItems = new ObservableArray();
 
-    guides.forEach(g => {
-      g.companyGuides = this.getCompanyGuides().filter(cg => cg.guideTypeId == g.id)
+    // Get collection of instructions
+    firebase.firestore().collection("instructions").orderBy("id", "asc").get().then(query => {
+      query.forEach(doc => {
+        let instruction: Instruction = <Instruction>doc.data();
+        instruction.guideTypes = new ObservableArray<GuideType>();
+
+        // Foreach instruction, get collection of guideTypes for the corresponding instruction
+        const colRef: firestore.CollectionReference = firebase.firestore().collection("guideTypes");
+        
+        colRef.where("instructionId", "==", instruction.id).orderBy("id", "asc").get().then(snapshot => {
+          snapshot.forEach(doc => {
+
+            let guideType: GuideType = <GuideType>doc.data();
+            guideType.docId = doc.id;
+            guideType.companyGuides = new ObservableArray<CompanyGuide>();
+            instruction.guideTypes.push(guideType);
+
+            // Foreach guideType get colection of companGuides for corresponding GuideType
+            colRef.doc(doc.id).collection("companyGuide").orderBy("id", "asc").get().then(snapshot => {
+              snapshot.forEach(doc => {
+
+                let companyGuide: CompanyGuide = <CompanyGuide>doc.data();
+                companyGuide.docId = doc.id;
+
+                guideType.companyGuides.push(companyGuide);
+              });
+            });
+          });
+        });
+
+        this._instructionItems.push(instruction);
+      })
     });
 
-    return guides;
-  }
-
-  getCompanyGuides(): Array<CompanyGuide> {
-    let companyGuides: Array<CompanyGuide> = [
-      {
-        id: 1,
-        guideTypeId: 1,
-        name: "Gips / Knauf",
-        contentLines: [
-          { image: "cc450.png", content: "Stolpesamlinger. Som hovedregel skal stolper være i fuld længde. Eventuelle samlinger af stolper skal være forskudt fra stolpe til stolpe." },
-          { image: "cc600.png", content: "Installationshuller. Der må udføres ekstra huller i profilkroppen, når hullet ikke overstiger 40% af kroppens bredde og en højde på max. 200 mm. " },
-          { image: "", content: "Hullerne skal udføres min. 300 mm fra profilenderne og med en indbyrdes afstand på > 250 mm." },
-          { image: "plademontage.png", content: "Plademontage. Pladerne kan monteres på langs eller på tværs af stolperne. Pladerne tilpasses, så de måler 10 - 15 mm mindre end den færdige væghøjde" },
-          { image: "", content: "Tværmontage. Ved tværmontage monteres pladerne på tværs af stolpernes længderetning. Alle kortkanter skal samles over stolper. Ved beklædninger med 2 lag gipsplader forskydes samlingerne i de enkelte lag, som vist på tegningen." },
-          { image: "lm_under_25m.png", content: "Længdemontage (indtil 2,5 m). Ved længdemontage monteres pladerne i stolpernes retning. Pladerne bør monteres uden kortkantsamlinger, når væghøjden er mindre end 2,5 meter." },
-          { image: "lm_over_25m.png", content: "Længdemontage (over 2,5 m). Langkanter samles over stolpe. I yderste pladelag skal kortkanter være understøttet af T-samlestykke eller båndstål. Ved vægge med flere pladelag skal kortkantsamlingerne forskydes mindst 150 mm." },
-          { image: "skruer_trae.png", content: "" },
-          { image: "skrueafstande_lm.png", content: "Skrueafstande - Længdemontage. Inderste pladelag fastskrues pr. ca. 450 mm i alle stolperne. Yderste pladelag fastskrues langs kanter pr. 200 mm i stolper og pr. 200 - 225 mm i top- og bundskinne. Inde på pladen skrues pr. 300 mm i alle stolper. " },
-          { image: "skrueafstande_tm.png", content: "Skrueafstande - Tværmontage. Inderste pladelag fastskrues i alle stolper med en afstand, der svarer til den halve pladebredde. Yderste pladelag fastskrues pr. 200 mm i stolper og pr. 200 - 225 mm i top- og bundskinne. Inde på pladen skrues pr. 300 mm i alle stolper." },
-        ],
-        source: "https://www.google.com"
-      },
-      { id: 2, guideTypeId: 2, name: "Rockwool", contentLines: [{ image: "", content: "rockrro brocrro" }], source: "https://www.google.com" },
-      { id: 3, guideTypeId: 3, name: "Dafa", contentLines: [{ image: "", content: "daferro raferro" }], source: "https://www.google.com" },
-      { id: 4, guideTypeId: 4, name: "Nordland", contentLines: [{ image: "", content: "norderro orderro" }], source: "https://www.google.com" },
-      { id: 5, guideTypeId: 5, name: "Klemmelister", contentLines: [{ image: "", content: "selvrro elverro" }], source: "https://www.google.com" },
-      { id: 5, guideTypeId: 5, name: "Træbeklædning", contentLines: [{ image: "", content: "adsf kjaslkdfj alskdjf" }], source: "https://www.google.com" },
-      { id: 5, guideTypeId: 5, name: "Eternit", contentLines: [{ image: "", content: "zxcvlkzxjcklvzlxckvj zlkjxcv lzækjvc" }], source: "https://www.google.com" },
-    ]
-
-    return companyGuides;
+    return this._instructionItems;
   }
 }

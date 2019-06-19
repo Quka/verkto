@@ -20,7 +20,6 @@ export class UserService {
     console.log("is user logged in called");
     return firebase.getCurrentUser()
       .then(user => {
-        console.log(user);
 
         if (typeof user !== "undefined") {
           return true;
@@ -44,7 +43,6 @@ export class UserService {
         this.currentUser.email = user.email;
         this.currentUser.displayName = user.displayName;
 
-        console.log(this.currentUser);
         return user;
       })
       .catch(err => {
@@ -74,9 +72,6 @@ export class UserService {
         this.currentUser.uid = user.uid;
         this.currentUser.email = user.email;
         this.currentUser.displayName = user.displayName;
-
-        console.log(this.currentUser);
-
         return user;
       })
       .catch(error => { return this.handleErrors(error); });

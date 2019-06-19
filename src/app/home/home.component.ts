@@ -5,6 +5,7 @@ import * as app from "tns-core-modules/application";
 import { DataService } from "../services/data.service";
 import { Instruction } from "../model/instruction.model";
 import { RouterExtensions } from "nativescript-angular/router";
+import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
 
 @Component({
     selector: "Home",
@@ -14,7 +15,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 })
 export class HomeComponent implements OnInit {
 
-    private _instructionItemsArray: Array<Instruction>;
+    private _instructionItemsArray: ObservableArray<Instruction>;
 
     constructor(private routerExtensions: RouterExtensions, private dataService: DataService) {
         // Use the component constructor to inject providers.
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         // Init your component properties here.
-        this._instructionItemsArray = this.dataService.getInstructionItems();
+        this._instructionItemsArray = this.dataService.retrieveInstructionItems();
     }
 
     onDrawerButtonTap(): void {
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
         sideDrawer.showDrawer();
     }
 
-    get instructionItemsArray(): Array<Instruction> {
+    get instructionItemsArray(): ObservableArray<Instruction> {
         return this._instructionItemsArray;
     }
 
@@ -45,5 +46,13 @@ export class HomeComponent implements OnInit {
                 curve: "easeIn"
             }
         }]);
+    }
+
+    generateGridRows() {
+        let rows = "*";
+        for (let i = 0; i < this._instructionItemsArray.length - 1; i++) {
+            rows += ",*"
+        }
+        return rows;
     }
 }

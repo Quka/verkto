@@ -4,20 +4,18 @@
 
     <ScrollView height="75" orientation="horizontal">
         <StackLayout class="companies" orientation="horizontal">
-            <Button class="btn btn-primary" *ngFor="let company of guide.companyGuides" [text]="company.name"
+            <Button class="btn btn-primary" *ngFor="let company of guide.companyGuides._array" [text]="company.name"
                 (tap)="onCompanyTap(company)"></Button>
         </StackLayout>
     </ScrollView>
 
     <ScrollView height="auto" orientation="horizontal">
-        <StackLayout class="content" orientation="horizontal">
+        <StackLayout class="content" orientation="horizontal" *ngIf="selectedCompanyGuide">
             <StackLayout class="card" *ngFor="let line of selectedCompanyGuide.contentLines">
                 <Image *ngIf="line.image" [src]="'~/images/' + line.image"></Image>
                 <Label [text]="line.content" textWrap="true"></Label> 
             </StackLayout> 
         </StackLayout>
     </ScrollView>
-
-    <!-- <Textview class="text" [text]="selectedCompanyGuide.text" [editable]="false" textWrap="true"></Textview> -->
 
 </StackLayout>

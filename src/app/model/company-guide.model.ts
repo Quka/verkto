@@ -1,6 +1,7 @@
 import { GuideType } from "./guide-type.model";
 
 export class CompanyGuide {
+    docId: string;
     id: number;
     guideTypeId: number;
     name: string;
