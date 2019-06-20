@@ -9,7 +9,7 @@
         </StackLayout>
     </ScrollView>
 
-    <ScrollView height="auto" orientation="horizontal">
+    <ScrollView height="500" orientation="horizontal">
         <StackLayout class="content" orientation="horizontal" *ngIf="selectedCompanyGuide">
             <StackLayout class="card" *ngFor="let line of selectedCompanyGuide.contentLines">
                 <Image *ngIf="line.image" [src]="'~/images/' + line.image"></Image>

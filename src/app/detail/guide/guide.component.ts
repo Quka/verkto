@@ -17,8 +17,6 @@ export class GuideComponent implements OnInit {
 
   ngOnInit() {
     this.selectedCompanyGuide = this.guide.companyGuides.getItem(0);
-    console.log("Selected company");
-    console.log(this.selectedCompanyGuide);
   }
 
   onCompanyTap(company: CompanyGuide): void {

@@ -40,6 +40,10 @@ export class DetailComponent implements OnInit {
       this.instructionId = + params["id"];
       this.instruction = this.instructions.filter(x => x.id == this.instructionId)[0];
     });
+
+
+    // post
+    this.dataService.postGuides();
   }
 
   onDrawerButtonTap(): void {
